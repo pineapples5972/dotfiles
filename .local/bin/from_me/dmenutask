@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+file=~/tasks.txt
+input=$(dmenu -p "Tasks: " -l 10 < "$file") || exit 1
+matchquery=$(grep -F "$input" "$file")
+addtask=$(echo "$input" >> "$file")
+replaced=$(grep -vxF "$input" "$file") 
+
+[[ "$input" == "$matchquery" ]] && "$addtask" || echo -n "$replaced" > "$file"

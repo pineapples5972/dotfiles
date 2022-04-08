@@ -1,0 +1,30 @@
+#!/bin/sh
+
+cd ~/altar/tlg || exit
+
+choices="telegram\nement\nschildichat\ndiscord\ndelta-chat\nlist"
+
+chosen=${1:-$(echo "$choices" | dmenu -i)}
+
+case "$chosen" in
+	telegram)
+		#cd ~/altar/tlg && ./nether -many -workdir ./Tux && notify-send "🦉telegram closed" ;;
+		cd ~/altar/tlg && ~/Apps/Telegram/Telegram -many -workdir ./Tux && notify-send "🦉telegram closed" ;;
+	ement)
+		$TERMINAL -e emacsclient -c && notify-send "🦉gomuks closed" ;;
+	schildichat)
+		cd "$APPIMAGES_PATH" && ./SchildiChat*.AppImage ; notify-send "🦉You Escaped Matrix" ;;
+	discord)
+		cd "$APPIMAGES_PATH" && ./Discord*.AppImage ; notify-send "Closed discord" ;;
+        delta-chat)
+		cd "$APPIMAGES_PATH" && ./DeltaChat*.AppImage ; notify-send "📧Exiting Mailing Booth" ;;
+	list)
+		notify-send "telegram
+ement
+schildichat
+discord
+deltachat"
+
+	;;
+
+esac

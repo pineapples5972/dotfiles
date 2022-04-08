@@ -1,0 +1,5 @@
+#!/bin/sh
+
+word=$(echo "" | dmenu -p "Add Word: ")
+meaning=$(echo "" | dmenu -p "Add Meaning: ")
+echo "$word | $meaning" >> ~/.local/share/vocab.txt

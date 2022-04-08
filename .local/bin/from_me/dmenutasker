@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+FILE=~/tasks.txt
+input=$(rofi -show -dmenu -l 25 -p "TASKS: " < "$FILE")
+
+if grep -xF "$input" "$FILE" &> /dev/null; then
+	replaced=$(grep -vxF "$input" "$FILE")
+	printf "$replaced\n"  > "$FILE"
+else
+	echo "$input" >> $FILE
+fi

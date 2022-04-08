@@ -1,0 +1,6 @@
+#!/bin/sh
+
+file=$1
+#curl -F 'f:1=<-'ix.io | xclip -sel c
+curl -F "file=@$file" ix.io | xclip -selection c
+notify-send "your link is ready"

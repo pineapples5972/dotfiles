@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. ~/.zprofile
+. ~/.xprofile
+
+fav=xfce
+
+case "$1" in
+	xfce) startxfce4 ;;
+	compiz) compiz ;;
+	dwm) ssh-agent dwm ;;
+	*) exec $fav ;;
+esac

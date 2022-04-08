@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# pkill -f picom || exec picom 
+
+if pidof picom >/dev/null ;
+then
+	killall picom && notify-send "picom disabled."
+else
+	ifinstalled picom || exit
+	picom && notify-send "picom enabled."
+fi

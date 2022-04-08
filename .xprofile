@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# This file runs when a DM logs you into a graphical session.
+# If you use startx/xinit like a Chad, this file will also be sourced.
+
+# Fix Gnome Apps Slow  Start due to failing services
+# Add this when you include flatpak in your system
+# dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+#mpd &			# music player daemon-you might prefer it as a service though
+sxhkd &			# universal keybinds
+setbg $HOME/.local/share/bg.jpg &	# set the background with the `setbg` script
+remaps &		# run the remaps script, switching caps/esc and more; check it for more info
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &	# Uncomment to use Xresources colors/settings on startup
+#xcompmgr &		# xcompmgr for transparency
+#picom &			# picom for transparency
+dunst &			# dunst for notifications
+xset r rate 300 50 &	# Speed xrate up
+unclutter &		# Remove mouse when idle
+fireplaces floo &	# mount all drives
+#ontime &		# change wallpaper in every 15 min
+ibus-daemon -drxR       # ime support
+emacs --bg-daemon &     #emacs daemon
+
+# This line autostarts an instance of Pulseaudio that does not exit on idle.
+# This is "necessary" on Artix due to a current bug between PA and
+# Chromium-based browsers where they fail to start PA and use dummy output.
+pidof -s runit &&
+	! pidof -s pulseaudio >/dev/null 2>&1 &&
+	setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1

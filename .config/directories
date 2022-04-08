@@ -1,0 +1,21 @@
+# You can add comments to these files with #
+cc ${XDG_CACHE_HOME:-$HOME/.cache}
+cf  ${XDG_CONFIG_HOME:-$HOME/.config}
+y   ${XDG_DOWNLOAD_DIR:-$HOME/yajnya}
+P   ${XDG_DOCUMENTS_DIR:-$HOME/pustak}
+learn $HOME/pustak/studies
+h   $HOME
+H   ~/tent
+o   ~/tent/castelobruxo/SARANG/Study/.Advanced_Studies
+s   ${XDG_MUSIC_DIR:-$HOME/sangit}
+mn  /mnt
+pp  ${XDG_PICTURES_DIR:-$HOME/chitra}
+src $HOME/.local/src
+chl  ${XDG_VIDEOS_DIR:-$HOME/chalchitra}
+l   ~/.local
+lb  ~/.local/bin
+lsh  ${XDG_DATA_HOME:-$HOME/.local/share}
+S   ~/tent/hogsmead/Softwares
+w   ~/tent/hogsmead/Wallpapers
+W   ~/chitra/walls
+vk  ${NOTES_PATH:-$HOME/tent/hogsmead/Softwares/home/vimwiki}

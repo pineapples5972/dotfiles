@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Put your bookmarks or App launchers list in scripts location
+# script can be written like this
+#      name of the subject	<tab>;<semicolon>command
+# eg.- librewolf	;exec librewolf
+# dmenu shows first field <subject> and execute second field<command>which comes after tab and ;<semicolon>
+# thats why new script should be written in sam way.
+
+scripts=$(ls ~/.local/share/extras/scripts)
+selection=${1:-$(echo "$scripts" | dmenu -i -l 15)}
+
+file=$HOME/.local/share/extras/scripts/$selection
+
+[ -z "$file" ]
+less "$file" | grep -P "^$(less "$file" | grep ";" | sed 's/\t.*//g' | dmenu -i -p "コンビニ 👉" -l 34 | awk '{print $1}')\s" | sed 's/.*\t;//' | ${SHELL:-"/bin/sh"} &
+
+# To see output in rofi use this line in place of  "dmenu -i -p"
+# rofi -show -dmenu -yoffset 01 -i -l 25
+
+# To see output in dmenu
+# dmenu -i -p "your prompt text 👉" -l 170 |
+
+# kombini can be invoke with or without argument
+# eg.- [me@artix ~]$ kombini 		-	it will show dmenu with listing of your scripts
+#      [me@artix ~]$ kombini spells	-	it will directly run the script name spells
+# This later become useful to run in launchers like xmenu or binding with keys
